@@ -1,29 +1,31 @@
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.Random;
 
 public class Recibo {
     private Donacion idDonacion;
-    private Date fechaEmision;
+    private LocalDate fechaEmision;
     private int numReciboFiscal;
 
-    public Recibo( Donacion idDonacion, Date fechaEmision, int numReciboFiscal) {
-        this.donacion = donacion;
-        this.fechaEmision = fechaEmision;
-        this.numReciboFiscal = numReciboFiscal;
-    }
+    Random numeroFiscal = new Random();
 
-    public Donacion getIdDonacion() {
-        return idDonacion;
+    public Recibo(Donacion idDonacion, LocalDate fechaEmision) {
+        this.fechaEmision = fechaEmision;
+        this.numReciboFiscal = 100 + numeroFiscal.nextInt(300);
+        setIdDonacion(idDonacion);
     }
 
     public void setIdDonacion(Donacion idDonacion) {
         this.idDonacion = idDonacion;
     }
+    public Donacion getIdDonacion() {
+        return idDonacion;
+    }
 
-    public Date getFechaEmision() {
+    public LocalDate getFechaEmision() {
         return fechaEmision;
     }
 
-    public void setFechaEmision(Date fechaEmision) {
+    public void setFechaEmision(LocalDate fechaEmision) {
         this.fechaEmision = fechaEmision;
     }
 
@@ -34,4 +36,12 @@ public class Recibo {
     public void setNumReciboFiscal(int numReciboFiscal) {
         this.numReciboFiscal = numReciboFiscal;
     }
+
+    public String infoRecibo() {
+        return "Recibo de ID Donacion: " + idDonacion.getIdDonacion() + "\n" +
+                "Con fecha de emision: " + fechaEmision + "\n" +
+                "Numero de recibo fiscal: " + numReciboFiscal + "\n" +
+                "Por valor de: " + idDonacion.getCantidadDonada();
+    }
+
 }
