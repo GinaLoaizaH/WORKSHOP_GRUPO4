@@ -2,6 +2,7 @@ import java.time.LocalDate;
 
 public class Donacion {
 
+    private static int contadorId = 0;
     private int idDonacion;
     private double cantidadDonada;
     private Donante donante;
@@ -9,13 +10,20 @@ public class Donacion {
     private LocalDate fecha;
     private String causaDonacion;
 
-    public Donacion(int idDonacion, double cantidadDonada, Donante donante, String metodoPago, LocalDate fecha, String causaDonacion){
-        this.idDonacion = idDonacion;
+
+    public Donacion(double cantidadDonada, Donante donante, String metodoPago, LocalDate fecha, String causaDonacion){
+        this.idDonacion = ++contadorId;
         this.cantidadDonada = cantidadDonada;
-        this.donante = donante;
         this.metodoPago = metodoPago;
         this.fecha = fecha;
         this.causaDonacion = causaDonacion;
+        setDonante(donante);
+
+        Corporacion.agregarDonacion(this);
+    }
+
+    public void setDonante(Donante donante) {
+        this.donante = donante;
     }
 
     public int getIdDonacion() {
@@ -31,8 +39,8 @@ public class Donacion {
         this.cantidadDonada = cantidadDonada;
     }
 
-    public Donante getDonante() {
-        return donante;
+    public String getDonante() {
+        return donante.getNombre();
     }
 
 
@@ -62,10 +70,10 @@ public class Donacion {
 
     public String infoDonacion(){
      return "idDonacion: " + idDonacion + "\n" +
-             "Donante: " + donante + "\n" +
+             "Donante: " + donante.getNombre() + "\n" +
              "Metodo de Pago: " + metodoPago + "\n" +
              "Fecha: " + fecha + "\n" +
-             "Causa donacion: " +causaDonacion;
+             "Causa donacion: " + causaDonacion;
     }
 
 
