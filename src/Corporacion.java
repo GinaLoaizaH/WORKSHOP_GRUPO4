@@ -4,11 +4,12 @@ public class Corporacion {
 
     private static ArrayList<Donacion> listaDonaciones = new ArrayList<>();
 
-
+    // Metodo para agregar donación automaticamente y no tener que instanciarlo
     public static void agregarDonacion(Donacion donacion) {
         listaDonaciones.add(donacion);
     }
 
+    // Busca la donación por ID y retorna toda la información
     public static String obtenerInfoDonacion(int id) {
         for (Donacion donacion : listaDonaciones) {
             if (donacion.getIdDonacion() == id) {
@@ -18,6 +19,16 @@ public class Corporacion {
         return null;
     }
 
+    // Muestra la información de todas las donaciones realizadas
+    public static String infoDonaciones() {
+        String totalInfoDonaciones = "";
+        for (Donacion donacion : listaDonaciones) {
+            totalInfoDonaciones += donacion.infoDonacion();
+        }
+        return totalInfoDonaciones;
+    }
+
+    // Suma la cantidad de donaciones realizadas
     public static double sumaDonaciones() {
         double total = 0;
         for (Donacion donacion : listaDonaciones) {
@@ -26,11 +37,12 @@ public class Corporacion {
         return total;
     }
 
+    // Muestra por tipo de causa benefica la cantidad de veces que donaron
     public static String tendencias() {
         int educacion = 0, vivienda = 0, salud = 0, derechosCiviles = 0;
 
         for (Donacion donacion : listaDonaciones) {
-
+            // Condición que ignora las diferencia entre mayuscula o miniscula
             if (donacion.getCausaDonacion().equalsIgnoreCase("educacion")) {
                 educacion++;
             } else if (donacion.getCausaDonacion().equalsIgnoreCase("vivienda")) {
@@ -42,17 +54,20 @@ public class Corporacion {
             }
 
         }
+        // Devuelve la cantidad por causa benéfica
         return "La cantidad de donaciones para la causa EDUCACION es: " + educacion + "\n" +
                 "La cantidad de donaciones para la causa VIVIENDA es: " + vivienda + "\n" +
                 "La cantidad de donaciones para la causa SALUD es: " + salud + "\n" +
                 "La cantidad de donaciones para la causa DERECHOS CIVILES es: " + derechosCiviles;
     }
 
+    // Muestra los metodos de pago realizados
     public static String metodosPago() {
         int efectivo = 0, tarjeta = 0, transferencia = 0;
         for (Donacion donacion : listaDonaciones) {
             String metodoPago = donacion.getMetodoPago().toLowerCase();
 
+            // Suma la cantidad de veces que se pagó con los diferentes medios de pago
             switch (metodoPago) {
                 case "efectivo":
                     efectivo++;
@@ -70,25 +85,31 @@ public class Corporacion {
                     break;
             }
         }
+
+        /* Si efectivo, tarjeta o transferencia es > 0 entonces que retorne
+        el mensaje correspondiente a los metodos de pago utilizados */
+
         String mensaje = "";
         if (efectivo > 0) {
-            mensaje = "Efectivo" + "\n";
+            mensaje = "- Efectivo" + "\n";
         } if (tarjeta > 0) {
-            mensaje += "Tarjeta" + "\n";
+            mensaje += "- Tarjeta" + "\n";
         } if (transferencia > 0) {
-            mensaje += "Transferencia";
+            mensaje += "- Transferencia";
         }
         return mensaje;
     }
 
+    // Muestra los nombres de todas las personas que realizaron una donación
     public static String nombresDonantes(){
         String mensaje = "";
         for(Donacion donacion: listaDonaciones){
-            mensaje += donacion.getDonante() + "\n";
+            mensaje += "- " + donacion.getDonante() + "\n";
         }
         return mensaje;
     }
 
+    // Trae la información de todas las donaciones realizadas
     public static ArrayList<Donacion> getListaDonaciones() {
         return listaDonaciones;
     }
