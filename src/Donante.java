@@ -35,6 +35,8 @@ public class Donante {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
+
+    // Metodo que retorna la información del donante
     public String infoDonante() {
         return "Nombre: " + nombre + "\n" +
         "Documento: " + documento + "\n" +

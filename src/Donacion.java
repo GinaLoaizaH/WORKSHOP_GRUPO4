@@ -68,12 +68,14 @@ public class Donacion {
         this.causaDonacion = causaDonacion;
     }
 
+    // Metodo para mostrar toda la información de la donación
     public String infoDonacion(){
-     return "idDonacion: " + idDonacion + "\n" +
+     return  "************************************" + "\n" +
+             "idDonacion: " + idDonacion + "\n" +
              "Donante: " + donante.getNombre() + "\n" +
              "Metodo de Pago: " + metodoPago + "\n" +
              "Fecha: " + fecha + "\n" +
-             "Causa donacion: " + causaDonacion;
+             "Causa donacion: " + causaDonacion + "\n";
     }
 
 

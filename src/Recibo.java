@@ -6,6 +6,7 @@ public class Recibo {
     private LocalDate fechaEmision;
     private int numReciboFiscal;
 
+    // Recibo fiscal generado de forma aleatoria
     Random numeroFiscal = new Random();
 
     public Recibo(Donacion idDonacion, LocalDate fechaEmision) {
@@ -37,6 +38,7 @@ public class Recibo {
         this.numReciboFiscal = numReciboFiscal;
     }
 
+    // Metodo que retorna la información del recibo
     public String infoRecibo() {
         return "Recibo de ID Donacion: " + idDonacion.getIdDonacion() + "\n" +
                 "Con fecha de emision: " + fechaEmision + "\n" +

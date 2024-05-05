@@ -60,12 +60,15 @@ public class Informe {
                 Corporacion.metodosPago() + "\n" +
                 "Los donantes fueron: " + "\n" +
                 Corporacion.nombresDonantes() +
-                "Para un total en donaciones de: " + Corporacion.sumaDonaciones();
+                "Para un total en donaciones de: $" + Corporacion.sumaDonaciones() + "\n" +
+                "----------------------------------------------------------------------" + "\n" +
+                "DETALLE DE CADA DONACIÓN" + "\n" +
+                Corporacion.infoDonaciones();
 
     }
 
     public String informePorId(int id){
-        return "El informe por id proporcionado es: " + "\n" +
+        return "El informe de la donación N° "+ id +" es: " + "\n" +
                 Corporacion.obtenerInfoDonacion(id);
     }
 
